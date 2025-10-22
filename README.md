@@ -50,10 +50,11 @@ uploads/             Uploaded documents
 - Gallery uploads support PDFs, images, and short videos.
 
 ## Bugs
-- Footholder is not at the footer in homepage (need to fix)
+- Footholder is not at the footer in homepage (need to fix) (fixed na ATA)
 
-## Features to implement
+## Features to implement (running list)
 - design (go libs HAHAHA)
+### For foundation foundation
 - google drive integration
 - google sheets integration? (or make our own attendance system)
 - where to store the db file? currently in root dir
