@@ -1,0 +1,18 @@
+<% if (flash.success && flash.success.length) { %>
+  <div class="alert alert-success" role="alert">
+    <ul class="mb-0">
+      <% flash.success.forEach((message) => { %>
+        <li><%= message %></li>
+      <% }); %>
+    </ul>
+  </div>
+<% } %>
+<% if (flash.error && flash.error.length) { %>
+  <div class="alert alert-danger" role="alert">
+    <ul class="mb-0">
+      <% flash.error.forEach((message) => { %>
+        <li><%= message %></li>
+      <% }); %>
+    </ul>
+  </div>
+<% } %>

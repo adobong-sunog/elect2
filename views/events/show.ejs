@@ -1,0 +1,81 @@
+<div class="d-flex justify-content-between align-items-start gap-2 mb-4 flex-wrap">
+  <div>
+    <h1 class="h3 mb-1"><%= event.title %></h1>
+    <p class="text-muted mb-0">Led by <strong><%= event.leader_names %></strong> at <strong><%= event.venue %></strong></p>
+    <p class="text-muted">Date: <%= new Date(event.activity_date).toLocaleDateString() %></p>
+    <% if (isAdmin && event.owner) { %>
+      <p class="text-muted mb-0">Submitted by <strong><%= event.owner.name %></strong> (<%= event.owner.email %>)</p>
+    <% } %>
+  </div>
+  <div class="d-flex gap-2">
+    <a href="/events/<%= event.id %>/edit" class="btn btn-outline-secondary">Edit</a>
+    <form method="post" action="/events/<%= event.id %>?_method=DELETE" onsubmit="return confirm('Delete this activity? This cannot be undone.');">
+      <button type="submit" class="btn btn-outline-danger">Delete</button>
+    </form>
+  </div>
+</div>
+
+<section class="mb-4">
+  <h2 class="h5">Objectives & Impact</h2>
+  <dl class="row">
+    <dt class="col-sm-3">Nurtures</dt>
+    <dd class="col-sm-9"><%= event.nurtures.join(', ') %></dd>
+    <dt class="col-sm-3">Objectives</dt>
+    <dd class="col-sm-9"><%= event.aims %></dd>
+    <dt class="col-sm-3">Impact Summary</dt>
+    <dd class="col-sm-9"><%= event.impact_summary %></dd>
+  </dl>
+</section>
+
+<section class="mb-4">
+  <h2 class="h5">Beneficiaries</h2>
+  <dl class="row">
+    <dt class="col-sm-3">Primary Beneficiaries</dt>
+    <dd class="col-sm-9"><%= event.primary_beneficiaries %></dd>
+    <dt class="col-sm-3">Secondary Beneficiaries</dt>
+    <dd class="col-sm-9"><%= event.secondary_beneficiaries %> (<%= event.secondary_beneficiaries_count %>)</dd>
+  </dl>
+</section>
+
+<section class="mb-4">
+  <h2 class="h5">Evaluation</h2>
+  <dl class="row">
+    <dt class="col-sm-3">Areas of Improvement</dt>
+    <dd class="col-sm-9"><%= event.improvement_areas.join(', ') %></dd>
+    <dt class="col-sm-3">Improvement Steps</dt>
+    <dd class="col-sm-9"><%= event.improvement_actions %></dd>
+  </dl>
+</section>
+
+<section class="mb-4">
+  <h2 class="h5">Documentation</h2>
+  <ul class="list-group">
+    <% if (event.attendance) { %>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <span>Attendance Sheet</span>
+        <a href="/<%= event.attendance.path %>" class="btn btn-sm btn-outline-primary" target="_blank" rel="noopener">Download</a>
+      </li>
+    <% } %>
+    <% if (event.promo) { %>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <span>Promotional Material</span>
+        <a href="/<%= event.promo.path %>" class="btn btn-sm btn-outline-primary" target="_blank" rel="noopener">Download</a>
+      </li>
+    <% } %>
+    <% if (event.gallery && event.gallery.length) { %>
+      <li class="list-group-item">
+        <div class="fw-semibold mb-2">Gallery Files</div>
+        <ul class="list-unstyled mb-0">
+          <% event.gallery.forEach((item) => { %>
+            <li class="d-flex justify-content-between align-items-center mb-2">
+              <a href="/<%= item.file_path %>" target="_blank" rel="noopener"><%= item.original_name %></a>
+              <span class="text-muted small"><%= (item.size / 1024).toFixed(1) %> KB</span>
+            </li>
+          <% }); %>
+        </ul>
+      </li>
+    <% } %>
+  </ul>
+</section>
+
+<a href="/" class="btn btn-outline-secondary">Back to Activities</a>

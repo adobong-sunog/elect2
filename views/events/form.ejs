@@ -1,0 +1,157 @@
+<% const getError = (field) => errors.find((err) => err.param === field); %>
+<% if (errors.length) { %>
+  <div class="alert alert-danger">
+    <p class="mb-1"><strong>Please correct the highlighted items:</strong></p>
+    <ul class="mb-0">
+      <% errors.forEach((err) => { %>
+        <li><%= err.msg %></li>
+      <% }) %>
+    </ul>
+  </div>
+<% } %>
+
+<div class="row g-3">
+  <div class="col-md-8">
+    <label class="form-label" for="title">Activity Title<span class="text-danger">*</span></label>
+    <input type="text" class="form-control <%= getError('title') ? 'is-invalid' : '' %>" id="title" name="title" value="<%= event.title %>">
+  </div>
+  <div class="col-md-4">
+    <label class="form-label" for="activity_date">Activity Date<span class="text-danger">*</span></label>
+    <input type="date" class="form-control <%= getError('activity_date') ? 'is-invalid' : '' %>" id="activity_date" name="activity_date" value="<%= event.activity_date %>">
+  </div>
+  <div class="col-md-6">
+    <label class="form-label" for="leader_names">Activity Leader(s)<span class="text-danger">*</span></label>
+    <input type="text" class="form-control <%= getError('leader_names') ? 'is-invalid' : '' %>" id="leader_names" name="leader_names" value="<%= event.leader_names %>">
+  </div>
+  <div class="col-md-6">
+    <label class="form-label" for="leader_email">Leader Email<span class="text-danger">*</span></label>
+    <input type="email" class="form-control <%= getError('leader_email') ? 'is-invalid' : '' %>" id="leader_email" name="leader_email" value="<%= event.leader_email %>">
+  </div>
+  <div class="col-md-6">
+    <label class="form-label" for="venue">Venue<span class="text-danger">*</span></label>
+    <input type="text" class="form-control <%= getError('venue') ? 'is-invalid' : '' %>" id="venue" name="venue" value="<%= event.venue %>">
+  </div>
+  <div class="col-12">
+    <label class="form-label">What did the activity nurture?<span class="text-danger">*</span></label>
+    <div class="row g-2">
+      <% nurturesOptions.forEach((option) => { %>
+        <% const checked = event.nurtures && event.nurtures.includes(option); %>
+        <div class="col-sm-4">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="nurtures-<%= option.replace(/\s+/g, '-') %>" name="nurtures" value="<%= option %>" <%= checked ? 'checked' : '' %>>
+            <label class="form-check-label" for="nurtures-<%= option.replace(/\s+/g, '-') %>">
+              <%= option %>
+            </label>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+    <div class="mt-2">
+      <label class="form-label" for="nurtures_other">Other nurture focus (comma separated)</label>
+      <input type="text" class="form-control" id="nurtures_other" name="nurtures_other" value="<%= event.nurtures_other || '' %>">
+    </div>
+  </div>
+  <div class="col-12">
+    <label class="form-label" for="aims">Objectives of the activity<span class="text-danger">*</span></label>
+    <textarea class="form-control <%= getError('aims') ? 'is-invalid' : '' %>" id="aims" name="aims" rows="2"><%= event.aims %></textarea>
+  </div>
+  <div class="col-12">
+    <label class="form-label" for="impact_summary">Impact and goals description<span class="text-danger">*</span></label>
+    <textarea class="form-control <%= getError('impact_summary') ? 'is-invalid' : '' %>" id="impact_summary" name="impact_summary" rows="3"><%= event.impact_summary %></textarea>
+  </div>
+  <div class="col-md-6">
+    <label class="form-label" for="primary_beneficiaries">Primary beneficiaries (occupation)<span class="text-danger">*</span></label>
+    <input type="text" class="form-control <%= getError('primary_beneficiaries') ? 'is-invalid' : '' %>" id="primary_beneficiaries" name="primary_beneficiaries" value="<%= event.primary_beneficiaries %>">
+  </div>
+  <div class="col-md-4">
+    <label class="form-label" for="secondary_beneficiaries">Secondary beneficiaries<span class="text-danger">*</span></label>
+    <input type="text" class="form-control <%= getError('secondary_beneficiaries') ? 'is-invalid' : '' %>" id="secondary_beneficiaries" name="secondary_beneficiaries" value="<%= event.secondary_beneficiaries %>">
+  </div>
+  <div class="col-md-2">
+    <label class="form-label" for="secondary_beneficiaries_count">Exact number<span class="text-danger">*</span></label>
+    <input type="number" min="0" class="form-control <%= getError('secondary_beneficiaries_count') ? 'is-invalid' : '' %>" id="secondary_beneficiaries_count" name="secondary_beneficiaries_count" value="<%= event.secondary_beneficiaries_count %>">
+  </div>
+  <div class="col-12">
+    <label class="form-label">Areas for improvement<span class="text-danger">*</span></label>
+    <div class="row g-2">
+      <% improvementOptions.forEach((option) => { %>
+        <% const checked = event.improvement_areas && event.improvement_areas.includes(option); %>
+        <div class="col-sm-4">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="improvement-<%= option.replace(/\s+/g, '-') %>" name="improvement_areas" value="<%= option %>" <%= checked ? 'checked' : '' %>>
+            <label class="form-check-label" for="improvement-<%= option.replace(/\s+/g, '-') %>">
+              <%= option %>
+            </label>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+    <div class="mt-2">
+      <label class="form-label" for="improvement_other">Other improvement focus (comma separated)</label>
+      <input type="text" class="form-control" id="improvement_other" name="improvement_other" value="<%= event.improvement_other || '' %>">
+    </div>
+  </div>
+  <div class="col-12">
+    <label class="form-label" for="improvement_actions">Steps to improve<span class="text-danger">*</span></label>
+    <textarea class="form-control <%= getError('improvement_actions') ? 'is-invalid' : '' %>" id="improvement_actions" name="improvement_actions" rows="3"><%= event.improvement_actions %></textarea>
+  </div>
+  <div class="col-12">
+    <div class="mb-2">
+      <label class="form-label" for="attendance">Attendance sheet<span class="text-danger">*</span></label>
+      <input class="form-control" type="file" id="attendance" name="attendance" accept=".pdf,.doc,.docx,.xls,.xlsx,.csv">
+      <div class="form-text">Upload completed PEPPI Attendance Sheet (max 10 MB).</div>
+      <% if (mode === 'edit' && event.attendance) { %>
+        <div class="mt-2 p-2 border rounded bg-light">
+          <p class="mb-1">Current file: <a href="/<%= event.attendance.path %>" target="_blank" rel="noopener"><%= event.attendance.name %></a></p>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="on" id="remove_attendance" name="remove_attendance">
+            <label class="form-check-label" for="remove_attendance">Remove this file</label>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="mb-2">
+      <label class="form-label" for="promo">Promotional materials<span class="text-danger">*</span></label>
+      <input class="form-control" type="file" id="promo" name="promo" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.webp">
+      <div class="form-text">Upload posters or other publicity collateral (max 1 MB).</div>
+      <% if (mode === 'edit' && event.promo) { %>
+        <div class="mt-2 p-2 border rounded bg-light">
+          <p class="mb-1">Current file: <a href="/<%= event.promo.path %>" target="_blank" rel="noopener"><%= event.promo.name %></a></p>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="on" id="remove_promo" name="remove_promo">
+            <label class="form-check-label" for="remove_promo">Remove this file</label>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </div>
+  <div class="col-12">
+    <label class="form-label" for="gallery">Photos and short videos</label>
+    <input class="form-control" type="file" id="gallery" name="gallery" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.webp,.mp4,.mov,.avi" multiple>
+    <div class="form-text">Upload up to 10 files (max 10 MB each).</div>
+    <% if (mode === 'edit' && event.gallery && event.gallery.length) { %>
+      <div class="mt-3">
+        <p class="fw-semibold">Existing uploads</p>
+        <div class="list-group">
+          <% event.gallery.forEach((item) => { %>
+            <label class="list-group-item d-flex justify-content-between align-items-center">
+              <span>
+                <input class="form-check-input me-2" type="checkbox" name="remove_gallery" value="<%= item.id %>">
+                <a href="/<%= item.file_path %>" target="_blank" rel="noopener"><%= item.original_name %></a>
+              </span>
+              <span class="text-muted small"><%= (item.size / 1024).toFixed(1) %> KB</span>
+            </label>
+          <% }); %>
+        </div>
+        <div class="form-text">Select any files to remove when saving.</div>
+      </div>
+    <% } %>
+  </div>
+</div>
+
+<div class="d-flex gap-2 mt-4">
+  <button type="submit" class="btn btn-primary"><%= mode === 'edit' ? 'Update Activity' : 'Save Activity' %></button>
+  <a href="/" class="btn btn-outline-secondary">Cancel</a>
+</div>

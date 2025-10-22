@@ -1,0 +1,4 @@
+<h1 class="h3 mb-4">Edit Activity</h1>
+<form method="post" action="/events/<%= event.id %>?_method=PUT" enctype="multipart/form-data" novalidate>
+  <%- include('form', { event, errors, mode }) %>
+</form>

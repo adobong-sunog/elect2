@@ -1,0 +1,16 @@
+.event-scroll {
+  max-height: 24rem;
+  overflow-y: auto;
+}
+
+.event-scroll article:last-child {
+  border-bottom: none !important;
+}
+
+.list-group-item input[type='checkbox'] {
+  cursor: pointer;
+}
+
+textarea.form-control {
+  min-height: 120px;
+}
