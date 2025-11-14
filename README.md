@@ -36,7 +36,7 @@ src/
   db/                SQLite client and helpers
   middleware/        Flash, error, and upload middleware
   routes/            Express routers
-  services/          Email and event persistence
+  services/          Event persistence and user management
   validators/        express-validator rules
 views/               EJS templates
 public/              CSS and static assets
@@ -58,4 +58,3 @@ uploads/             Uploaded documents
 - google drive integration
 - google sheets integration? (or make our own attendance system)
 - where to store the db file? currently in root dir
-- real email recepipt sending 

@@ -9,7 +9,6 @@ const {
   deleteEvent,
   removeGalleryItems,
 } = require('../services/eventService');
-const { sendSubmissionReceipt } = require('../services/emailService');
 const { nurturesOptions, improvementOptions } = require('../validators/eventValidator');
 const { toRelativePath, MAX_PROMO_SIZE } = require('../middleware/upload');
 
@@ -160,16 +159,8 @@ async function handleCreate(req, res, next) {
       size: file.size,
     }));
 
-    const event = await createEvent(payload, normalizedGallery);
-
-    try {
-      await sendSubmissionReceipt(event);
-      req.flash('success', 'Activity saved successfully. A copy has been emailed to you.');
-    } catch (emailError) {
-      console.error('Failed to send submission receipt.', emailError);
-      req.flash('success', 'Activity saved successfully.');
-      req.flash('error', 'We could not send the confirmation email. Please verify your email settings.');
-    }
+    await createEvent(payload, normalizedGallery);
+    req.flash('success', 'Activity saved successfully.');
     return res.redirect('/');
   } catch (error) {
     cleanupUploads(req.files);
