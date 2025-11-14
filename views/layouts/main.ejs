@@ -11,10 +11,10 @@
 <body>
   <nav class="navbar navbar-expand-lg mb-4" style="background-color: #E85D4A;">
     <div class="container d-flex justify-content-between align-items-center">
-  <a class="navbar-brand fw-bold d-flex align-items-center" href="/">
-  <img src="/css/images/pep.png" width="50" height="50" class="me-2">
-  <span><%= appName %></span>
-  </a>
+      <a class="navbar-brand fw-bold d-flex align-items-center" href="/">
+        <img src="/images/logo.png" width="50" height="50" class="me-2" alt="<%= appName %> logo">
+        <span><%= appName %></span>
+      </a>
       <% if (currentUser) { %>
         <div class="d-flex align-items-center gap-2 flex-wrap justify-content-end">
           <span class="text-white-50 small">Signed in as <strong class="text-white"><%= currentUser.name %></strong></span>
