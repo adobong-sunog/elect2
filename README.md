@@ -28,7 +28,7 @@ Server starts on `http://localhost:3000`
 ## Notes
 
 - Maximum file size is 10 MB per file
-- Gallery uploads support PDFs, images, and short videos.
+- Gallery uploads support PDFs, and images
 
 ## Bugs
 - All discovered bugs are fixed
