@@ -4,7 +4,5 @@ uploads/
 data/
 coverage/
 .DS_Store
-.github/
-.vscode/
 npm-debug.log*
 *.log
