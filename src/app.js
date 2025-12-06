@@ -45,7 +45,7 @@ app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, '../public')));
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
-app.locals.appName = 'Event Tracker';
+app.locals.appName = 'PEPPI Activity Tracker';
 
 app.use('/auth', authRouter);
 app.use('/admin', adminRouter);
