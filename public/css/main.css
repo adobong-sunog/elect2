@@ -49,7 +49,7 @@ body {
 
 /*bg sa login at register window lang*/
 .auth-bg {
-  background: url('/css/images/BG.png');
+  background: url('/images/BG.png');
   background-size: cover;
   background-attachment: fixed;
 }
