@@ -8,11 +8,17 @@ A web application to collect post-activity reports.
 - npm (bundled with Node.js)
 
 ### Installation
-### Run this first to install dependencies:
 
+### Clone this repository
+```bash
+git clone https://github.com/adobong-sunog/PEPPI-Event-Tracker.git
+```
+
+### Install dependencies:
 ```bash
 npm install
 ```
+
 ### Run the development server
 
 ```bash
